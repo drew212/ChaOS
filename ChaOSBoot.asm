@@ -1,5 +1,5 @@
-; NuMu 0.0.01 bootloader
-; NuMuBoot.asm
+; ChaOS 0.0.01 bootloader
+; ChaOSBoot.asm
 
 mov ax, 0x07C0
 mov ds, ax
@@ -45,13 +45,13 @@ mainloop:
 
     jmp mainloop
 
-welcome db 'Welcome to NuMu OS! v0.0.1', 0x0D, 0x0A, 0
+welcome db 'Welcome to ChaOS OS! v0.0.1', 0x0D, 0x0A, 0
 msg_helloworld db 'Hello World!', 0x0D, 0x0A, 0
 badcommand db 'Bad command entered.', 0x0D, 0x0A, 0
 prompt db '>', 0
 cmd_hi db 'hi', 0
 cmd_help db 'help', 0
-msg_help db 'NuMu Os: Commands: hi, help', 0x0D, 0x0A, 0
+msg_help db 'ChaOS Os: Commands: hi, help', 0x0D, 0x0A, 0
 buffer times 64 db 0
 
 ; ================

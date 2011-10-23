@@ -1,4 +1,4 @@
-#include "NuMuKernel.h"
+#include "ChaOSKernel.h"
 #include "screen.h"
 
 
@@ -20,7 +20,7 @@ void kmain( void* mbd, unsigned int magic )
     /* Print a letter to screen to see everything is working: */
     /* Write your kernel here. */
 
-    char * welcome = "\tWelcome to NuMu OS! \n123456789\0";
+    char * welcome = "\tWelcome to ChaOS OS! \n123456789\0";
     screen_clear();
     int i;
     screen_write(welcome);

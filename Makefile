@@ -1,8 +1,8 @@
-# Makefile for NuMu OS
+# Makefile for ChaOS OS
 # Author - Drew Cross
 
 
-SOURCES = Multiboot.o NuMuKernel.o screen.o common.o
+SOURCES = Multiboot.o ChaOSKernel.o screen.o common.o
 
 CFLAGS = -Wall -Wextra -nostdlib -nostdinc -fno-stack-protector -nostartfiles -nodefaultlibs
 LDFLAGS = -m elf_i386 -T linker.ld
@@ -16,8 +16,8 @@ all : $(SOURCES) link
 Multiboot.o : Multiboot.s
 	nasm -f elf -o Multiboot.o Multiboot.s
 
-NuMuKernel.o : NuMuKernel.c
-	gcc -m32 -o NuMuKernel.o -c NuMuKernel.c $(CFLAGS)
+ChaOSKernel.o : ChaOSKernel.c
+	gcc -m32 -o ChaOSKernel.o -c ChaOSKernel.c $(CFLAGS)
 
 screen.o : screen.c
 	gcc -m32 -o screen.o -c screen.c $(CFLAGS)
@@ -29,7 +29,7 @@ common.o : common.c
 #	nasm $(ASFLAGS) $<
 
 link:
-	ld $(LDFLAGS) -o NuMuKernel.bin $(SOURCES)
+	ld $(LDFLAGS) -o ChaOSKernel.bin $(SOURCES)
 
 clean :
 	rm *.o *.bin
