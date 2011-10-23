@@ -32,4 +32,4 @@ link:
 	ld $(LDFLAGS) -o NuMuKernel.bin $(SOURCES)
 
 clean :
-	rm *.o NuMuKernel.bin
+	rm *.o *.bin
