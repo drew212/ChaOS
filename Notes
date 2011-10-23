@@ -1,0 +1,54 @@
+
+
+
+Patch Notes:
+
+
+0.0.1
+-----
+Booting
+
+
+
+
+
+
+
+
+-----------------------------
+FUTURE GOALS
+-----------------------------
+
+0.0.2
+-----
+C kernel implemented, correctly recieveing standard input and outputing.
+
+
+0.1.0
+-----
+Stack implemented
+
+
+0.1.5
+-----
+Memory allocation handled
+
+
+1.0.0
+-----
+Bash like terminal properties implemented.
+
+1.5.0
+-----
+Self supporting
+
+
+
+2.0.0
+-----
+POSIX mostly supported(75% or better)
+
+
+3.0.0
+-----
+Graphical (X) Session
