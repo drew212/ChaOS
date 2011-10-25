@@ -1,5 +1,4 @@
 #include "ChaOSKernel.h"
-#include "screen.h"
 
 
 void kmain( void* mbd, unsigned int magic )

@@ -1,8 +1,6 @@
-#ifndef NUMUKERNEL_H
-#define NUMUKERNEL_H
+#ifndef __CHAOSKERNEL_H__
+#define __CHAOSKERNEL_H__
+#include "ChaOSKernel.h"
+#include "screen.h"
 
-void kprint(char letter, int row, int col);
-void kscroll();
-void kScreenClear();
-
-#endif
+#endif //__CHAOSKERNEL_H__
