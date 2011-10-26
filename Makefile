@@ -2,37 +2,41 @@
 # Author - Drew Cross
 
 
-SOURCES = Multiboot.o ChaOSKernel.o screen.o common.o ChaOSKernelasm.o
-
+SOURCES = $(MULTIBOOT).o $(CHAOSKERNEL).o $($(SCREEN)).o $(COMMON).o $(STARTUPUTILS).o
 CFLAGS = -Wall -Wextra -nostdlib -nostdinc -fno-stack-protector -nostartfiles -nodefaultlibs
 LDFLAGS = -m elf_i386 -T linker.ld
 ASFLAGS = -elf
 
 
-
+# FILENAMES
+STARTUPUTILS = StartupUtils
+MULTIBOOT = Multiboot
+CHAOSKERNEL = ChaOSKernel
+SCREEN = screen
+COMMON = common
 
 all : $(SOURCES) link
 
-Multiboot.o : Multiboot.s
-	nasm -f elf -o Multiboot.o Multiboot.s
+$(MULTIBOOT).o : $(MULTIBOOT).s
+	nasm -f elf -o $(MULTIBOOT).o $(MULTIBOOT).s
 
-ChaOSKernel.o : ChaOSKernel.c ChaOSKernel.s
-	gcc -m32 -o ChaOSKernel.o -c ChaOSKernel.c $(CFLAGS)
+$(CHAOSKERNEL).o : $(CHAOSKERNEL).c $(STARTUPUTILS).s
+	gcc -m32 -o $(CHAOSKERNEL).o -c $(CHAOSKERNEL).c $(CFLAGS)
 
-ChaOSKernelasm.o : ChaOSKernel.s
-	nasm -f elf -o ChaOSKernelasm.o ChaOSKernel.s
+$(STARTUPUTILS).o : $(STARTUPUTILS).s
+	nasm -f elf -o $(STARTUPUTILS).o $(STARTUPUTILS).s
 
-screen.o : screen.c
-	gcc -m32 -o screen.o -c screen.c $(CFLAGS)
+$($(SCREEN)).o : $(SCREEN).c
+	gcc -m32 -o $($(SCREEN)).o -c $(SCREEN).c $(CFLAGS)
 
-common.o : common.c
-	gcc -m32 -o common.o -c common.c $(CFLAGS)
+$(COMMON).o : $(COMMON).c
+	gcc -m32 -o $(COMMON).o -c $(COMMON).c $(CFLAGS)
 
 #.s.o:
 #	nasm $(ASFLAGS) $<
 
 link:
-	ld $(LDFLAGS) -o ChaOSKernel.bin $(SOURCES)
+	ld $(LDFLAGS) -o $(CHAOSKERNEL).bin $(SOURCES)
 
 clean :
 	rm *.o *.bin
