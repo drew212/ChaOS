@@ -1,7 +1,12 @@
-// GDT descriptor table
-// The packed attribute tells GCC not to change an
-// of the alignment in the structure
+/* GDT descriptor table
+ * The packed attribute tells GCC not to change an of the alignment in the structure
+ *
+ * ChaOS Kernel
+ * Author - Drew Cross <mstngdrew212@gmail.com>
+ */
 
+#ifndef __DESCRIPTOR_TABLES_H__
+#define __DESCRIPTOR_TABLES_H__
 struct gdt_entry_struct
 {
     u16int limit_low;
@@ -21,3 +26,5 @@ struct gdt_ptr_struct
 typedef struct gdt_ptr_struct gdt_ptr_t;
 
 void init_descriptor_tables();
+
+#endif //__DESCRIPTOR_TABLES_H__

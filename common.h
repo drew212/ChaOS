@@ -1,5 +1,8 @@
-// common.h -- Typedefs and global functions
-//      Author - Drew Cross
+/* common.h -- Typedefs and global functions
+ *
+ * ChaOS Kernel
+ * Author - Drew Cross <mstngdrew212@gmail.com>
+ */
 
 #ifndef COMMON_H
 #define COMMON_H

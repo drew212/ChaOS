@@ -1,7 +1,9 @@
-//
-// descriptor_talbles.c - Initialises the GDT and IDT
-// Defines the default ISR and IRQ handler.
-//
+/* descriptor_talbles.c - Initialises the GDT and IDT
+ * Defines the default ISR and IRQ handler.
+ *
+ * ChaOS Kernel
+ * Author - Drew Cross <mstngdrew212@gmail.com>
+ */
 
 
 #include "common.h"

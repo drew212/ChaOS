@@ -1,3 +1,9 @@
+/* screen.h -- Utilities for writing characters to the screen
+ *
+ * ChaOS Kernel
+ * Author - Drew Cross <mstngdrew212@gmail.com>
+ */
+
 #include "screen.h"
 
 // VGA framebuffer starts at 0xB8000;

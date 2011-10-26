@@ -1,11 +1,13 @@
-; ChaOS Kernel file
-; External functions
+; StartupUtils.s - External functions
+;
+; ChaOS Kernel
+; Author - Drew Cross <mstngdrew212@gmail.com>
 
 [GLOBAL setGDT]
 setGDT:
-	lgdt [ebp+4]
+	lgdt [ebp]
 
 
 [GLOBAL setIDT]
 setIDT:
-	lidt [ebp+4]
+	lidt [ebp]

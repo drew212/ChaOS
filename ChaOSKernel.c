@@ -1,3 +1,8 @@
+/* ChaOSKernel.h -- Main kernel file
+ *
+ * Author - Drew Cross <mstngdrew212@gmail.com>
+ */
+
 #include "ChaOSKernel.h"
 
 

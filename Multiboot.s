@@ -1,5 +1,7 @@
 ; MultiBoot.s -- Kernel start location. Also defines multiboot header.
 ; Based on Bran's kernel development tutorial file start.asm
+;
+; ChaOS Kernel
 ; Author - Drew Cross
 
 MBOOT_PAGE_ALIGN    equ 1<<0    ; Load kernel and modules on a page boundary
