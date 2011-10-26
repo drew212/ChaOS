@@ -14,24 +14,27 @@ MULTIBOOT = Multiboot
 CHAOSKERNEL = ChaOSKernel
 SCREEN = screen
 COMMON = common
+TABLES = tables
 
 all : $(SOURCES) link
 
 $(MULTIBOOT).o : $(MULTIBOOT).s
 	nasm -f elf -o $(MULTIBOOT).o $(MULTIBOOT).s
 
-$(CHAOSKERNEL).o : $(CHAOSKERNEL).c $(STARTUPUTILS).s
+$(CHAOSKERNEL).o : $(CHAOSKERNEL).c $(CHAOSKERNEL).h $(STARTUPUTILS).s
 	gcc -m32 -o $(CHAOSKERNEL).o -c $(CHAOSKERNEL).c $(CFLAGS)
 
 $(STARTUPUTILS).o : $(STARTUPUTILS).s
 	nasm -f elf -o $(STARTUPUTILS).o $(STARTUPUTILS).s
 
-$($(SCREEN)).o : $(SCREEN).c
+$($(SCREEN)).o : $(SCREEN).c $(SCREEN).h
 	gcc -m32 -o $($(SCREEN)).o -c $(SCREEN).c $(CFLAGS)
 
 $(COMMON).o : $(COMMON).c
 	gcc -m32 -o $(COMMON).o -c $(COMMON).c $(CFLAGS)
 
+$(TABLES).o : $(TABLES).c $(TABLES).h $(STARTUPUTILS).s
+	gcc -m32 -o $(TABLES).o -c $(TABLES).c  $(CFLAGS)
 #.s.o:
 #	nasm $(ASFLAGS) $<
 

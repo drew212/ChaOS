@@ -16,8 +16,8 @@ typedef          char   int8_t;
 
 
 void outb(uint16_t port, uint8_t value);
-u8int inb(uint16_t port);
-u16int inw(uint16_t port);
+uint8_t inb(uint16_t port);
+uint16_t inw(uint16_t port);
 
 #endif
 
