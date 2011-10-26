@@ -1,8 +1,7 @@
 # Makefile for ChaOS OS
 # Author - Drew Cross
 
-
-SOURCES = $(MULTIBOOT).o $(CHAOSKERNEL).o $($(SCREEN)).o $(COMMON).o $(STARTUPUTILS).o
+SOURCES = $(MULTIBOOT).o $(CHAOSKERNEL).o $(SCREEN).o $(COMMON).o $(STARTUPUTILS).o $(TABLES).o $(ISR).o $(INTERRUPTS).o
 CFLAGS = -Wall -Wextra -nostdlib -nostdinc -fno-stack-protector -nostartfiles -nodefaultlibs
 LDFLAGS = -m elf_i386 -T linker.ld
 ASFLAGS = -elf
@@ -15,31 +14,20 @@ CHAOSKERNEL = ChaOSKernel
 SCREEN = screen
 COMMON = common
 TABLES = tables
+ISR = isr
+INTERRUPTS = interrupts
 
-all : $(SOURCES) link
+CFLAGS=-nostdlib -nostdinc -fno-builtin -fno-stack-protector
+LDFLAGS=-Tlink.ld
+ASFLAGS=-felf
 
-$(MULTIBOOT).o : $(MULTIBOOT).s
-	nasm -f elf -o $(MULTIBOOT).o $(MULTIBOOT).s
+all: $(SOURCES) link
 
-$(CHAOSKERNEL).o : $(CHAOSKERNEL).c $(CHAOSKERNEL).h $(STARTUPUTILS).s
-	gcc -m32 -o $(CHAOSKERNEL).o -c $(CHAOSKERNEL).c $(CFLAGS)
-
-$(STARTUPUTILS).o : $(STARTUPUTILS).s
-	nasm -f elf -o $(STARTUPUTILS).o $(STARTUPUTILS).s
-
-$($(SCREEN)).o : $(SCREEN).c $(SCREEN).h
-	gcc -m32 -o $($(SCREEN)).o -c $(SCREEN).c $(CFLAGS)
-
-$(COMMON).o : $(COMMON).c
-	gcc -m32 -o $(COMMON).o -c $(COMMON).c $(CFLAGS)
-
-$(TABLES).o : $(TABLES).c $(TABLES).h $(STARTUPUTILS).s
-	gcc -m32 -o $(TABLES).o -c $(TABLES).c  $(CFLAGS)
-#.s.o:
-#	nasm $(ASFLAGS) $<
+clean:
+		-rm *.o kernel
 
 link:
-	ld $(LDFLAGS) -o $(CHAOSKERNEL).bin $(SOURCES)
+		ld $(LDFLAGS) -o kernel.bin $(SOURCES)
 
-clean :
-	rm *.o *.bin
+.s.o:
+		nasm $(ASFLAGS) $<

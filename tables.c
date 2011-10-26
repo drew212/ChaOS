@@ -10,7 +10,7 @@
 
 
 gdt_entry_t gdt_table[5];
-gdt_ptr_t;
+gdt_ptr_t gdt_ptr;
 
 
 // Initializes the descriptor tables
@@ -24,7 +24,7 @@ static void init_descriptor_tables()
 static void init_gdt()
 {
     gdt_ptr.limit = (sizeof(gdt_entry_t) * 5) -1;
-    gdt_ptr.base = (uint32_t)&gdt_table;
+    gdt_ptr.base = (uint32_t) &gdt_table;
 
     gdt_set_entry(0,0,0,0,0);               // NULL
     gdt_set_entry(1,0,0xFFFFFFFF,0x9A,0);   // Kernel space code segement
@@ -32,7 +32,7 @@ static void init_gdt()
     gdt_set_entry(0,0,0xFFFFFFFF,0xFA,0);   // User space code segment
     gdt_set_entry(0,0,0xFFFFFFFF,0xF2,0);   // User space data segment
 
-    set_gdt((uint32_t)&gdt_ptr_t);
+    set_gdt((uint32_t) &gdt_ptr);
 }
 
 static void gdt_set_entry(int32_t num, uint32_t base, uint32_t limit,
@@ -57,12 +57,12 @@ static void idt_set_entry(uint8_t num, uint32_t base, uint16_t select, uint8_t f
     idt_table[num].base_low = base & 0xFFFF;
     idt_table[num].base_high = (base >> 16) & 0xFFFF;
 
-    id_table[num].select = select;
+    idt_table[num].select = select;
     idt_table[num].zero = 0;
 
     // TODO: Uncomment the OR below when using user-mode,
     // it sets the intterupt entry's privilege level to 3
-    idt_entries[num].flags = flags/*| 0x60 */;
+    idt_table[num].flags = flags/*| 0x60 */;
 }
 static void init_idt()
 {
@@ -103,5 +103,4 @@ static void init_idt()
     idt_set_entry( 29, (uint32_t)isr29, 0x08, 0x8E);
     idt_set_entry( 30, (uint32_t)isr30, 0x08, 0x8E);
     idt_set_entry( 31, (uint32_t)isr31, 0x08, 0x8E);
-    idt_set_entry( 32, (uint32_t)isr32, 0x08, 0x8E);
 }

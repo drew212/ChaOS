@@ -7,18 +7,18 @@
 #include "screen.h"
 
 // VGA framebuffer starts at 0xB8000;
-u16int *video_memory = (u16int *)0xB8000;
+uint16_t *video_memory = (uint16_t *)0xB8000;
 
 //Stores cursor position
-u8int cursor_x = 0;
-u8int cursor_y = 0;
+uint8_t cursor_x = 0;
+uint8_t cursor_y = 0;
 
 
 static void scroll()
 {
     // Get a space character with the default color atributes.
-    u8int attributeByte = (0 << 4) | (15 & 0x0F); //(Black) | (White)
-    u16int blank = 0x20 | (attributeByte << 8); // Space |
+    uint8_t attributeByte = (0 << 4) | (15 & 0x0F); //(Black) | (White)
+    uint16_t blank = 0x20 | (attributeByte << 8); // Space |
 
     // Row 25 is the end, this means we need to scroll up
 
@@ -43,7 +43,7 @@ static void scroll()
 static void move_cursor()
 {
     //Screen is 80x25 -
-    u16int cursorLocation = cursor_y * 80 + cursor_x;
+    uint16_t cursorLocation = cursor_y * 80 + cursor_x;
     outb(0x3D4, 14);                    // Tell the VGA board we are setting the high cursor byte.
     outb(0x3D5, cursorLocation >> 8);   // Send the high cursor byte.
     outb(0x3D4, 15);                    // Tell the VGA board we are setting the low cursor byte.
@@ -53,8 +53,8 @@ static void move_cursor()
 void screen_clear()
 {
     // Set attrByte
-    u8int attributeByte = (0 << 4) | (15 & 0x0F);
-    u16int blank = 0x20 | (attributeByte << 8);
+    uint8_t attributeByte = (0 << 4) | (15 & 0x0F);
+    uint16_t blank = 0x20 | (attributeByte << 8);
 
     int i;
     for(i =0; i < 80*25; i++)
@@ -70,14 +70,14 @@ void screen_clear()
 
 void screen_put(char c)
 {
-    u8int backColor = 0; //Black
-    u8int foreColor = 15; //White
+    uint8_t backColor = 0; //Black
+    uint8_t foreColor = 15; //White
 
     //The lower of this is the foreground and the upper nyble is the background
-    u8int attributeByte = (backColor << 4) | (foreColor & 0x0f); // This is the byte we send to the VGA board
+    uint8_t attributeByte = (backColor << 4) | (foreColor & 0x0f); // This is the byte we send to the VGA board
 
-    u16int attribute = attributeByte << 8;
-    u16int *location;
+    uint16_t attribute = attributeByte << 8;
+    uint16_t *location;
 
     // Backspace handling
     if(c  == 0x08 && cursor_x) {
