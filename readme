@@ -1,3 +1,6 @@
 To run:
 make
 qemu -kernel ChaOSKernel.bin
+
+Dependencies:
+nasm

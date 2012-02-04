@@ -45,11 +45,6 @@ mainloop:
 
     jmp mainloop
 
-;TODO - fully implement this
-.checkvbe:
-    mov ax 0x2F00
-
-
 welcome db 'Welcome to ChaOS OS! v0.0.1', 0x0D, 0x0A, 0
 msg_helloworld db 'Hello World!', 0x0D, 0x0A, 0
 badcommand db 'Bad command entered.', 0x0D, 0x0A, 0
@@ -72,16 +67,6 @@ print_string:
     int 0x10    ; otherwise print out the character!
 
     jmp print_string
-
-print_int:
-    loadsb
-    or al, al
-    jz .done
-
-    move ah, 0x0E
-    int 0x10    ; interrupt for print character
-
-    jmp print_int:
 
 .done:
     ret

@@ -1,6 +1,14 @@
 ; MultiBoot.s -- Kernel start location. Also defines multiboot header.
 ; Based on Bran's kernel development tutorial file start.asm
-; Author - Drew Cross
+;
+; This work is licensed under the Creative Commons Attribution-NonCommercial-
+; ShareAlike 3.0 Unported License. To view a copy of this license, visit
+; http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to:
+; Creative Commons
+; 444 Castro Street, Suite 900
+; Mountain View, California, 94041, USA.
+;
+; Author(s): Drew Cross <drew@ddcross.com>
 
 MBOOT_PAGE_ALIGN    equ 1<<0    ; Load kernel and modules on a page boundary
 MBOOT_MEM_INFO      equ 1<<1    ; Provide your kernel with memory info

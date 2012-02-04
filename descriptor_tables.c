@@ -1,8 +1,15 @@
-//
-// descriptor_talbles.c - Initialises the GDT and IDT
-// Defines the default ISR and IRQ handler.
-//
-
+/* descriptor_talbles.c - Initialises the GDT and IDT Defines the default ISR
+ *                        and IRQ handler.
+ *
+ * This work is licensed under the Creative Commons Attribution-NonCommercial-
+ * ShareAlike 3.0 Unported License. To view a copy of this license, visit
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to:
+ * Creative Commons
+ * 444 Castro Street, Suite 900
+ * Mountain View, California, 94041, USA.
+ *
+ * Author(s): Drew Cross <drew@ddcross.com>
+ */
 
 #include "common.h"
 #include "descriptor_tables.h"

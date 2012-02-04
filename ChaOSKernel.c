@@ -1,3 +1,15 @@
+/* ChaOSKernel.h - Chaos kernel file
+ *
+ * This work is licensed under the Creative Commons Attribution-NonCommercial-
+ * ShareAlike 3.0 Unported License. To view a copy of this license, visit
+ * http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to:
+ * Creative Commons
+ * 444 Castro Street, Suite 900
+ * Mountain View, California, 94041, USA.
+ *
+ * Author(s): Drew Cross <drew@ddcross.com>
+ */
+
 #include "ChaOSKernel.h"
 
 
@@ -19,7 +31,7 @@ void kmain( void* mbd, unsigned int magic )
     /* Print a letter to screen to see everything is working: */
     /* Write your kernel here. */
 
-    char * welcome = "\tWelcome to ChaOS OS! \n123456789\0";
+    char * welcome = "\tWelcome to ChaOS OS! \n123456789\n\0";
     screen_clear();
     int i;
     screen_write(welcome);
